@@ -1,0 +1,32 @@
+{
+  "name": "@chrillaz/toolkit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Collection of common configurations and tools",
+  "author": "Christoffer Öhman",
+  "license": "MIT",
+  "homepage": "https://github.com/Chrillaz/toolkit/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chrillaz/toolkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Chrillaz/toolkit/issues"
+  },
+  "workspaces": [
+    "packages/browserslist-config",
+    "packages/env-load",
+    "packages/eslint-plugin",
+    "packages/prettier-config",
+    "packages/scripts",
+    "packages/ts-config"
+  ],
+  "scripts": {
+    "test": "scripts test"
+  },
+  "devDependencies": {
+    "@chrillaz/scripts": "file:packages/scripts",
+    "@types/node": "^18.7.18",
+    "typescript": "^4.8.3"
+  }
+}

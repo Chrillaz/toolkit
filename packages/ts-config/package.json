@@ -1,0 +1,21 @@
+{
+  "name": "@chrillaz/ts-config",
+  "version": "1.0.0",
+  "description": "A collection of tsconfigs",
+  "main": "default/tsconfig.json",
+  "author": "Christoffer Öhman",
+  "license": "ISC",
+  "files": [
+    "base",
+    "default",
+    "babel"
+  ],
+  "homepage": "https://github.com/Chrillaz/toolkit/packages/ts-config/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chrillaz/toolkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Chrillaz/toolkit/issues"
+  }
+}

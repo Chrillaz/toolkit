@@ -1,0 +1,24 @@
+{
+  "name": "@chrillaz/eslint-plugin",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Christoffer Öhman",
+  "license": "ISC",
+  "files": [
+    "configs"
+  ],
+  "homepage": "https://github.com/Chrillaz/toolkit/packages/eslint-plugin/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chrillaz/toolkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Chrillaz/toolkit/issues"
+  },
+  "peerDependencies": {
+    "eslint": ">= 8"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

@@ -1,0 +1,1 @@
+# Browserslist config
