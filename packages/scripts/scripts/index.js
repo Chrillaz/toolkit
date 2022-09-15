@@ -1,5 +1,5 @@
 const { sync } = require('cross-spawn');
-const { getPackageScript } = require('../utilities/paths');
+const { package } = require('../utilities/paths');
 const { validateScript, getArgs } = require('../utilities/cli');
 const args = getArgs();
 
@@ -7,7 +7,7 @@ const scriptName = validateScript(args.scriptName);
 
 const { signal, status } = sync(
 	'node',
-	[getPackageScript(scriptName), ...args.scriptArgs],
+	[package.script(scriptName), ...args.scriptArgs],
 	{
 		stdio: 'inherit',
 	}
