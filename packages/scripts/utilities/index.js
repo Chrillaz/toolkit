@@ -8,7 +8,7 @@ const configExtensions = [
 ];
 
 const extensions = [
-  '',
+	'',
 	'.js',
 	'.ts',
 	'.json',
@@ -28,7 +28,10 @@ const resolvedPaths = new Map();
 
 function resolve(key, resolver) {
 	if (!resolvedPaths.has(key)) {
-		resolvedPaths.set(key, resolver());
+		const resolvedPath = resolver();
+		if (resolvedPath) {
+			resolvedPaths.set(key, resolver());
+		}
 	}
 
 	return resolvedPaths.get(key);
@@ -50,7 +53,7 @@ function resolveConfiguration(fileName, resolver) {
 			return resolver(fileName + confExt + fileExtension);
 		}
 
-		return undefined;
+		return path;
 	}, '');
 }
 
@@ -131,21 +134,21 @@ function getPackagePath(relPath) {
 }
 
 /**
- * 
- * @param { string } relPath 
+ *
+ * @param { string } relPath
  * @returns { string }
  */
 function getPackageConfig(relPath) {
-  return getPackagePath('configs/' + relPath);
+	return getPackagePath('configs/' + relPath);
 }
 
 /**
- * 
- * @param { string } relPath 
+ *
+ * @param { string } relPath
  * @returns { string }
  */
 function getPackageScript(relPath) {
-  return getPackagePath('scripts/' + relPath);
+	return getPackagePath('scripts/' + relPath);
 }
 
 /**
@@ -177,8 +180,8 @@ module.exports = {
 	hasConsumerConfiguration,
 	getConsumerConfiguration,
 	getPackagePath,
-  getPackageConfig,
-  getPackageScript,
+	getPackageConfig,
+	getPackageScript,
 	hasPackageConfiguration,
 	getPackageConfiguration,
 };
