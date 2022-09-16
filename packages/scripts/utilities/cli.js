@@ -1,10 +1,30 @@
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
-const { scriptsRoot } = require('./paths');
-console.log(scriptsRoot)
+const { scriptsRoot } = require('.');
+
 const scripts = fs.readdirSync(scriptsRoot);
 const argv = require('minimist')(process.argv.slice(2));
+
+/**
+ *
+ * @param dir string
+ * @returns Array
+ */
+function getScripts() {
+	return scripts
+		.map((script) => path.basename(script, path.extname(script)))
+		.filter((name) => name.toLowerCase() !== 'index');
+}
+
+/**
+ *
+ * @param scriptName string
+ * @returns boolean
+ */
+function hasScript(scriptName) {
+	return getScripts().some((name) => name === scriptName);
+}
 
 /**
  * Checks if given key exists in process argv
@@ -51,26 +71,6 @@ function getArgs() {
 }
 
 /**
- *
- * @param dir string
- * @returns Array
- */
-function getScripts() {
-	return scripts
-		.map((script) => path.basename(script, path.extname(script)))
-		.filter((name) => name.toLowerCase() !== 'index');
-}
-
-/**
- *
- * @param scriptName string
- * @returns boolean
- */
-function hasScript(scriptName) {
-	return getScripts().some((name) => name === scriptName);
-}
-
-/**
  * Validates given scriptname against supported scripts
  *
  * @param scriptName string
@@ -102,7 +102,7 @@ function validateScript(scriptName) {
 }
 
 module.exports = {
-  hasArg,
+	hasArg,
 	getArg,
 	getPathArg,
 	getArgs,
