@@ -1,18 +1,21 @@
-const { getPackageValue } = require('../utilities/package');
-const { consumer, getConfigPath } = require('../utilities/paths');
+const {
+  consumerRoot,
+	hasConsumerConfiguration,
+	getKeyFromPackage,
+	getPackageConfiguration,
+	getConsumerConfiguration,
+} = require('../utilities');
 
-const rootDir = consumer.root;
-
-const displayName = getPackageValue('name');
+console.log('HELLO DEFAULT.');
 
 const config = {
-	rootDir,
-	displayName,
+	rootDir: consumerRoot,
+	displayName: getKeyFromPackage('name'),
 	moduleFileExtensions: [
 		'js',
 		'jsx',
 	],
-	setupFilesAfterEnv: [getConfigPath('jest.setup')],
+	setupFilesAfterEnv: [getPackageConfiguration('jest.setup')],
 	testEnvironment: 'jsdom',
 	testEnvironmentOptions: {
 		url: 'http://localhost:3000',
@@ -25,10 +28,14 @@ const config = {
 	verbose: true,
 };
 
-if (!!consumer.resolve('tsconfig')) {
+if (hasConsumerConfiguration('jest.setup')) {
+	config.setupFilesAfterEnv.push(getConsumerConfiguration('jest.setup'));
+}
+
+if (hasConsumerConfiguration('tsconfig')) {
 	config.globals = {
 		'ts-jest': {
-			tsconfig: getConfigPath('tsconfig'),
+			tsconfig: getConsumerConfiguration('tsconfig'),
 		},
 	};
 
