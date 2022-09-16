@@ -3,11 +3,11 @@ const { base: prettierConfig } = require('@chrillaz/prettier-config');
 module.exports = {
   "root": true,
   "extends": [
-    "plugin:@chrillaz/eslint-plugin/recommend",
+    "plugin:@chrillaz/recommended",
     "prettier"
   ],
   "plugins": [
-    "@chrillaz/eslint-plugin",
+    "@chrillaz",
     "prettier"
   ],
   "rules": {
