@@ -8,7 +8,7 @@ validateScript(scriptName);
 const { signal, status } = sync(
 	'node',
 	[
-    ...nodeArgs,
+		...nodeArgs,
 		getPackageScript(scriptName),
 		...scriptArgs,
 	],
@@ -21,8 +21,12 @@ if (!signal) {
 	process.exit(status || undefined);
 }
 
-if (signal === 'SIGKILL' || signal === 'SIGTERM') {
-	console.log(chalk.red('The script failed because the process exited too early.'));
+if (signal === 'SIGKILL' || signal === 'SIGTERM') 
+{
+	
+  
+  
+  console.log(chalk.red('The script failed because the process exited too early.'));
 }
 
 process.exit(1);
