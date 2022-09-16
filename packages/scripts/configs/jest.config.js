@@ -6,8 +6,6 @@ const {
 	getConsumerConfiguration,
 } = require('../utilities');
 
-console.log('HELLO DEFAULT.');
-
 const config = {
 	rootDir: consumerRoot,
 	displayName: getKeyFromPackage('name'),
