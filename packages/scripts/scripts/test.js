@@ -6,20 +6,16 @@ const { getArgs, hasArg } = require('../utilities/cli');
 process.env.BABEL_ENV = 'test';
 process.env.NODE_ENV = 'test';
 
-const hasConfigOption = hasArg('config') || hasArg('c');
-const hasConfigFile = hasConsumerConfiguration('jest');
-const hasJestConfig = () => hasConfigOption || hasConfigFile;
-
 const { scriptArgs } = getArgs();
 
-let configArgs = [];
+const hasJestConfig = () => hasArg('config') || hasArg('c') || hasConsumerConfiguration('jest');
 
-if (!hasJestConfig()) {
-	configArgs = [
-		'--config',
-		getPackageConfiguration('jest'),
-	];
-}
+const configArgs = hasJestConfig()
+	? []
+	: [
+			'--config',
+			getPackageConfiguration('jest'),
+	  ];
 
 const { status } = spawn(
 	resolveBin('jest'),
