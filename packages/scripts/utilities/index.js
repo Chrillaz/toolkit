@@ -30,7 +30,7 @@ function resolve(key, resolver) {
 	if (!resolvedPaths.has(key)) {
 		const resolvedPath = resolver();
 		if (resolvedPath) {
-			resolvedPaths.set(key, resolver());
+			resolvedPaths.set(key, resolvedPath);
 		}
 	}
 
@@ -44,17 +44,19 @@ function resolve(key, resolver) {
  * @returns { string | undefined }
  */
 function resolveConfiguration(fileName, resolver) {
-	return configExtensions.reduce((path, confExt) => {
-		const fileExtension = extensions.find((fileExt) =>
-			existsSync(resolver(fileName + confExt + fileExt))
-		);
+	let match;
+	configExtensions.find((cext) =>
+		extensions.some((fext) => {
+			const test = resolver(fileName + cext + fext);
+			const exists = existsSync(test);
+      match = exists ? test : false;
+			return exists;
+		})
+	);
 
-		if (fileExtension) {
-			return resolver(fileName + confExt + fileExtension);
-		}
-
-		return path;
-	}, '');
+	if (match) {
+		return match;
+	}
 }
 
 /**
