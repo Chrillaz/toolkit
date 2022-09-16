@@ -3,9 +3,6 @@ const config = {
 	extends: [
 		'eslint:recommended',
 	],
-	plugins: [
-    'plugin:multiline-arrays'
-  ],
 	rules: {
 		'block-spacing': 'error',
 		'keyword-spacing': [
