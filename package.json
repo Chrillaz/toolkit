@@ -22,7 +22,8 @@
     "packages/ts-config"
   ],
   "scripts": {
-    "test": "scripts test"
+    "test": "scripts test",
+    "lint": "scripts lint"
   },
   "devDependencies": {
     "@chrillaz/scripts": "file:packages/scripts",
