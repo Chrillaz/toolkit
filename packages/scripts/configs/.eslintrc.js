@@ -2,37 +2,34 @@ const prettierConfig = require('./.prettierrc.js');
 const { hasConsumerConfiguration, hasPackage } = require('../utilities');
 
 const config = {
-	env: {
-		node: true,
-		es6: true,
-	},
-	extends: ['plugin:@chrillaz/recommended', 'prettier'],
-	parserOptions: {
-		sourceType: 'module',
-	},
-	plugins: ['@chrillaz', 'prettier'],
+	extends: [
+		'plugin:@chrillaz/recommended',
+	],
 	rules: {
-		'prettier/prettier': ['error', prettierConfig],
+		'prettier/prettier': [
+			'error',
+			prettierConfig,
+		],
 	},
 };
 
-if (hasConsumerConfiguration('tsconfig')) {
+const hasTypescript = hasConsumerConfiguration('tsconfig');
+
+if (hasTypescript) {
 	config.overrides = [
 		{
-			files: ['**/*.ts', '**/*.tsx'],
 			extends: [
-				'plugin:@chrillaz/eslint-plugin/recommended',
-				'plugin:@typescript-eslint/recommended',
-				'prettier',
+				'plugin:@chrillaz/eslint-plugin/typescript',
 			],
-			parser: '@typescript-eslint/parser',
-			plugins: ['@chrillaz', '@typescript-eslint'],
 		},
 	];
 }
 
 if (hasPackage('react')) {
 	config.extends.push('plugin:@chrillaz/eslint-plugin/react');
+	if (hasTypescript) {
+		config.overrides[0].extends.push('plugin:@chrillaz/eslint-plugin/react');
+	}
 }
 
 module.exports = config;

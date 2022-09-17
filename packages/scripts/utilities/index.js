@@ -1,4 +1,4 @@
-const { realpathSync, existsSync } = require('fs');
+const { realpathSync, existsSync, readdirSync } = require('fs');
 const argv = require('minimist')(process.argv.slice(2));
 const path = require('path');
 
@@ -25,13 +25,13 @@ const configsRoot = path.join(packageRoot, 'configs');
 
 const packageJson = require(path.join(consumerRoot, 'package.json'));
 
-const scripts = fs.readdirSync(scriptsRoot);
+const scripts = readdirSync(scriptsRoot);
 
 /**
  *
  * @returns { Array }
  */
- function getScripts() {
+function getScripts() {
 	return scripts
 		.map((script) => path.basename(script, path.extname(script)))
 		.filter((name) => name.toLowerCase() !== 'index');
@@ -231,8 +231,8 @@ function getArgs() {
 }
 
 module.exports = {
-  getScripts,
-  hasScript,
+	getScripts,
+	hasScript,
 	consumerRoot,
 	scriptsRoot,
 	configsRoot,
