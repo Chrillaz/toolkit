@@ -15,11 +15,13 @@
   },
   "workspaces": [
     "packages/browserslist-config",
+    "packages/context-store",
     "packages/env-load",
     "packages/eslint-plugin",
     "packages/prettier-config",
     "packages/scripts",
-    "packages/ts-config"
+    "packages/ts-config",
+    "packages/context-store"
   ],
   "scripts": {
     "test": "scripts test",

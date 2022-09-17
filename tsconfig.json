@@ -1,6 +1,9 @@
 {
   "references": [
     {
+      "path": "packages/context-store"
+    },
+    {
       "path": "packages/env-load"
     }
   ],
