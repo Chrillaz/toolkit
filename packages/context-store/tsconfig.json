@@ -1,0 +1,9 @@
+{
+  "extends": "@chrillaz/ts-config/babel/tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "jsx": "react"
+  },
+  "include": [ "src" ],
+  "exclude": [ "node_modules" ]
+}

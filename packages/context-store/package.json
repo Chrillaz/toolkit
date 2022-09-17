@@ -1,0 +1,30 @@
+{
+  "name": "@chrillaz/context-store",
+  "version": "1.0.0",
+  "description": "React context with redux pattern",
+  "main": "dist/index.js",
+  "author": "Christoffer Öhman",
+  "license": "ISC",
+  "homepage": "https://github.com/Chrillaz/toolkit/packages/context-store#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chrillaz/toolkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Chrillaz/toolkit/issues"
+  },
+  "peerDependencies": {
+    "react": ">= 16",
+    "react-dom": ">= 16"
+  },
+  "devDependencies": {
+    "@chrillaz/scripts": "file:../scripts",
+    "@types/react": "^18.0.20",
+    "@types/react-dom": "^18.0.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
