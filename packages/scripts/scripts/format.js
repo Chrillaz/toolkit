@@ -1,7 +1,12 @@
 const { sync: spawn } = require('cross-spawn');
 const { sync: resolveBin } = require('resolve-bin');
-const { hasConsumerConfiguration, getPackageConfiguration } = require('../utilities');
-const { hasArg, getArgs, getFileArg } = require('../utilities/cli');
+const {
+	hasArg,
+	getArgs,
+	getFileArg,
+	hasConsumerConfiguration,
+	getPackageConfiguration,
+} = require('../utilities');
 
 const { scriptArgs } = getArgs();
 

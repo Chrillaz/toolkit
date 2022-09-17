@@ -1,4 +1,5 @@
 const { realpathSync, existsSync } = require('fs');
+const argv = require('minimist')(process.argv.slice(2));
 const path = require('path');
 
 const configExtensions = [
@@ -24,6 +25,30 @@ const configsRoot = path.join(packageRoot, 'configs');
 
 const packageJson = require(path.join(consumerRoot, 'package.json'));
 
+const scripts = fs.readdirSync(scriptsRoot);
+
+/**
+ *
+ * @returns { Array }
+ */
+ function getScripts() {
+	return scripts
+		.map((script) => path.basename(script, path.extname(script)))
+		.filter((name) => name.toLowerCase() !== 'index');
+}
+
+/**
+ *
+ * @param { string } scriptName
+ * @returns { boolean }
+ */
+function hasScript(scriptName) {
+	return getScripts().some((name) => name === scriptName);
+}
+
+/**
+ * Cachemap for resolved paths
+ */
 const resolvedPaths = new Map();
 
 function resolve(key, resolver) {
@@ -49,7 +74,7 @@ function resolveConfiguration(fileName, resolver) {
 		extensions.some((fext) => {
 			const test = resolver(fileName + cext + fext);
 			const exists = existsSync(test);
-      match = exists ? test : false;
+			match = exists ? test : false;
 			return exists;
 		})
 	);
@@ -171,7 +196,43 @@ function hasPackageConfiguration(configName) {
 	return !!getPackageConfiguration(configName);
 }
 
+/**
+ * Checks if given key exists in process argv
+ *
+ * @param { string } arg
+ * @return { boolean }
+ */
+function hasArg(arg) {
+	return arg in argv;
+}
+
+/**
+ *
+ */
+function getFileArg() {
+	return argv._;
+}
+
+/**
+ * Returns minimist parsed argv
+ *
+ * @return { object }
+ */
+function getArgs() {
+	const args = process.argv.slice(2);
+	const scripts = getScripts();
+	const scriptIndex = args.findIndex((arg) => scripts.includes(arg));
+
+	return {
+		nodeArgs: args.slice(0, scriptIndex),
+		scriptName: args[scriptIndex],
+		scriptArgs: args.slice(scriptIndex + 1),
+	};
+}
+
 module.exports = {
+  getScripts,
+  hasScript,
 	consumerRoot,
 	scriptsRoot,
 	configsRoot,
@@ -186,4 +247,7 @@ module.exports = {
 	getPackageScript,
 	hasPackageConfiguration,
 	getPackageConfiguration,
+	hasArg,
+	getFileArg,
+	getArgs,
 };

@@ -1,7 +1,11 @@
 const { sync: spawn } = require('cross-spawn');
 const { sync: resolveBin } = require('resolve-bin');
-const { hasConsumerConfiguration, getPackageConfiguration } = require('../utilities');
-const { getArgs, hasArg } = require('../utilities/cli');
+const {
+	getArgs,
+	hasArg,
+	hasConsumerConfiguration,
+	getPackageConfiguration,
+} = require('../utilities');
 
 process.env.BABEL_ENV = 'test';
 process.env.NODE_ENV = 'test';
