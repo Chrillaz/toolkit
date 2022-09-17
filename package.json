@@ -23,7 +23,9 @@
   ],
   "scripts": {
     "test": "scripts test",
-    "lint": "scripts lint"
+    "lint": "scripts lint",
+    "format:check": "scripts format --check",
+    "format:write": "scripts format --write"
   },
   "devDependencies": {
     "@chrillaz/scripts": "file:packages/scripts",
