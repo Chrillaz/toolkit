@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "Christoffer Öhman",
   "license": "ISC",
+  "files": [
+    "index.js"
+  ],
   "homepage": "https://github.com/Chrillaz/toolkit/packages/browserslist-config/",
   "repository": {
     "type": "git",
