@@ -1,8 +1,21 @@
 const config = {
 	root: true,
+	env: {
+		es6: true,
+		node: true,
+	},
 	extends: [
 		'eslint:recommended',
+		'prettier',
 	],
+	plugins: [
+		'@chrillaz',
+		'prettier',
+	],
+	parserOptions: {
+		sourceType: 'module',
+        ecmaVersion: 'latest'
+	},
 	rules: {
 		'block-spacing': 'error',
 		'keyword-spacing': [
