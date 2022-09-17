@@ -1,5 +1,5 @@
 const { base, react } = require('@chrillaz/prettier-config');
-const { hasPackage } = require('../utilities/package');
+const { hasPackage } = require('../utilities');
 
 const config = base;
 
