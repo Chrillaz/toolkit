@@ -1,13 +1,36 @@
 const { sync } = require('cross-spawn');
-const { getPackageScript } = require('../utilities/paths');
-const { validateScript, getArgs } = require('../utilities/cli');
-const args = getArgs();
+const chalk = require('chalk');
+const { getPackageScript, getArgs } = require('../utilities');
+const { nodeArgs, scriptName, scriptArgs } = getArgs();
 
-const scriptName = validateScript(args.scriptName);
+if (!scriptName) {
+	console.log(
+		'Ooops.. ' +
+			'Looks like you forgot to pass which script to be executed ' +
+			chalk.green(getScripts().join(' | '))
+	);
+
+	process.exit(1);
+}
+
+if (!hasScript(scriptName)) {
+	console.log(
+		'Ooops.. ' +
+			chalk.red(scriptName) +
+			' is not a valid script name. Maybee you meant to pass one of ' +
+			chalk.green(getScripts().join(' | '))
+	);
+
+	process.exit(1);
+}
 
 const { signal, status } = sync(
 	'node',
-	[getPackageScript(scriptName), ...args.scriptArgs],
+	[
+		...nodeArgs,
+		getPackageScript(scriptName),
+		...scriptArgs,
+	],
 	{
 		stdio: 'inherit',
 	}

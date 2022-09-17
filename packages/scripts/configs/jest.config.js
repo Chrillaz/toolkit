@@ -1,21 +1,24 @@
-const { hasConfig, getConfig } = require('../utilities/config');
-const { getPackageValue } = require('../utilities/package');
-const { consumer } = require('../utilities/paths');
-
-const rootDir = consumer.root;
-
-const displayName = getPackageValue('name');
+const {
+  consumerRoot,
+	hasConsumerConfiguration,
+	getKeyFromPackage,
+	getPackageConfiguration,
+	getConsumerConfiguration,
+} = require('../utilities');
 
 const config = {
-	rootDir,
-	displayName,
-  moduleFileExtensions: ["js", "jsx"],
-	setupFilesAfterEnv: [getConfig('jest.setup')],
+	rootDir: consumerRoot,
+	displayName: getKeyFromPackage('name'),
+	moduleFileExtensions: [
+		'js',
+		'jsx',
+	],
+	setupFilesAfterEnv: [getPackageConfiguration('jest.setup')],
 	testEnvironment: 'jsdom',
-  testEnvironmentOptions: {
-    url: 'http://localhost:3000',
-  },
-  testPathIgnorePatterns: ["/node_modules/"],
+	testEnvironmentOptions: {
+		url: 'http://localhost:3000',
+	},
+	testPathIgnorePatterns: ['/node_modules/'],
 	testMatch: ['<rootDir>/src/**/*.(test|spec).[jt]s?(x)'],
 	transform: {
 		'^.+\\.(js|jsx)?$': require.resolve('babel-jest'),
@@ -23,14 +26,22 @@ const config = {
 	verbose: true,
 };
 
-if (hasConfig('tsconfig')) {
+if (hasConsumerConfiguration('jest.setup')) {
+	config.setupFilesAfterEnv.push(getConsumerConfiguration('jest.setup'));
+}
+
+if (hasConsumerConfiguration('tsconfig')) {
 	config.globals = {
 		'ts-jest': {
-			tsconfig: getConfig('tsconfig'),
+			tsconfig: getConsumerConfiguration('tsconfig'),
 		},
 	};
 
-	config.moduleFileExtensions = [...config.moduleFileExtensions, 'ts', 'tsx'];
+	config.moduleFileExtensions = [
+		...config.moduleFileExtensions,
+		'ts',
+		'tsx',
+	];
 
 	config.transform['^.+.(ts|tsx)?$'] = require.resolve('ts-jest');
 }

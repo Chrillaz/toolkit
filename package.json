@@ -22,7 +22,10 @@
     "packages/ts-config"
   ],
   "scripts": {
-    "test": "scripts test"
+    "test": "scripts test",
+    "lint": "scripts lint",
+    "format:check": "scripts format --check",
+    "format:write": "scripts format --write"
   },
   "devDependencies": {
     "@chrillaz/scripts": "file:packages/scripts",
