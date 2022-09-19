@@ -16,9 +16,9 @@ const hasPrettierConfig = () =>
 const configArgs = hasPrettierConfig()
 	? []
 	: [
-			'--config',
-			getPackageConfiguration('.prettier'),
-	  ];
+		'--config',
+		getPackageConfiguration('.prettier'),
+	];
 
 const hasPrettierIgnore = () =>
 	hasArg('--ignore-path') || hasConsumerConfiguration('.prettierignore');
@@ -26,9 +26,9 @@ const hasPrettierIgnore = () =>
 const ignoreArgs = hasPrettierIgnore()
 	? []
 	: [
-			'--ignore-path',
-			getPackageConfiguration('.prettierignore'),
-	  ];
+		'--ignore-path',
+		getPackageConfiguration('.prettierignore'),
+	];
 
 const checkArg = hasArg('check') ? '--check' : '--write';
 

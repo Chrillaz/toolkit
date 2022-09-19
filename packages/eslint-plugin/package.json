@@ -1,29 +1,29 @@
 {
-  "name": "@chrillaz/eslint-plugin",
-  "version": "1.0.0",
-  "main": "index.js",
-  "author": "Christoffer Öhman",
-  "license": "ISC",
-  "files": [
-    "configs"
-  ],
-  "homepage": "https://github.com/Chrillaz/toolkit/packages/eslint-plugin/",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Chrillaz/toolkit.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Chrillaz/toolkit/issues"
-  },
-  "peerDependencies": {
-    "eslint": ">=8"
-  },
-  "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.37.0",
-    "@typescript-eslint/parser": "^5.37.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.31.8",
-    "eslint-plugin-react-hooks": "^4.6.0"
-  }
+    "name": "@chrillaz/eslint-plugin",
+    "version": "1.0.0",
+    "main": "index.js",
+    "author": "Christoffer Öhman",
+    "license": "ISC",
+    "files": [
+        "configs"
+    ],
+    "homepage": "https://github.com/Chrillaz/toolkit/packages/eslint-plugin/",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Chrillaz/toolkit.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Chrillaz/toolkit/issues"
+    },
+    "peerDependencies": {
+        "eslint": ">=8"
+    },
+    "dependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.37.0",
+        "@typescript-eslint/parser": "^5.37.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-react": "^7.31.8",
+        "eslint-plugin-react-hooks": "^4.6.0"
+    }
 }

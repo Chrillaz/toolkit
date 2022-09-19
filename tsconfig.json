@@ -1,8 +1,4 @@
 {
-  "references": [
-    {
-      "path": "packages/env-load"
-    }
-  ],
-  "files": []
+    "references": [],
+    "files": []
 }

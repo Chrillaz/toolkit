@@ -1,24 +1,24 @@
 {
-  "name": "@chrillaz/prettier-config",
-  "version": "1.0.0",
-  "main": "index.js",
-  "author": "Christoffer Öhman",
-  "license": "ISC",
-  "homepage": "https://github.com/Chrillaz/toolkit/packages/prettier-config/",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Chrillaz/toolkit.git"
-  },
-  "bugs": {
-    "url": "https://github.com/Chrillaz/toolkit/issues"
-  },
-  "peerDependencies": {
-    "prettier": ">= 2"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "prettier-plugin-multiline-arrays": "^1.1.1"
-  }
+    "name": "@chrillaz/prettier-config",
+    "version": "1.0.0",
+    "main": "index.js",
+    "author": "Christoffer Öhman",
+    "license": "ISC",
+    "homepage": "https://github.com/Chrillaz/toolkit/packages/prettier-config/",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Chrillaz/toolkit.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Chrillaz/toolkit/issues"
+    },
+    "peerDependencies": {
+        "prettier": ">= 2"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "prettier-plugin-multiline-arrays": "^1.1.1"
+    }
 }

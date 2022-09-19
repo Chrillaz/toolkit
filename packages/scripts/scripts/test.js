@@ -17,9 +17,9 @@ const hasJestConfig = () => hasArg('config') || hasArg('c') || hasConsumerConfig
 const configArgs = hasJestConfig()
 	? []
 	: [
-			'--config',
-			getPackageConfiguration('jest'),
-	  ];
+		'--config',
+		getPackageConfiguration('jest'),
+	];
 
 const { status } = spawn(
 	resolveBin('jest'),
