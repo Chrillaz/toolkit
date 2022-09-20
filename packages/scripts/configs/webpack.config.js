@@ -7,10 +7,12 @@ const {
 	hasPackage,
 	getConsumerPath,
 	hasConsumerConfiguration,
-	getPackageConfiguration,
+    getPackagePath,
 } = require('../utilities');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
+
+const mode = isDevelopment ? 'development' : 'production';
 
 const context = getConsumerPath('.');
 
@@ -38,7 +40,7 @@ const devServer = {
 	static: getConsumerPath('public'),
 	compress: true,
 	hot: true,
-	port: '3000',
+	port: 3000,
 	historyApiFallback: hasPackage('react'),
 };
 
@@ -77,12 +79,13 @@ const plugins = [
 
 let target = 'browserslist';
 if (!browserslist.findConfig('.')) {
-	target += `:${require.resolve(getPackageConfiguration('.browserslist'))}`;
+	target += ':' + getPackagePath('configs/.browserslistrc');
 }
 
 const config = {
+    mode,
 	context,
-	// target,
+	target,
 	devServer,
 	devtool: isDevelopment ? 'inline-source-map' : 'source-map',
 	entry: getConsumerPath('src'),
