@@ -12,9 +12,9 @@ process.env.BABEL_ENV = 'development';
 
 const { scriptArgs } = getArgs();
 
-const hasWebpackConfig = () => {
-	hasArg('config') || hasArg('c') || hasConsumerConfiguration('webpack');
-};
+const hasWebpackConfig = () => (
+	hasArg('config') || hasArg('c') || hasConsumerConfiguration('webpack')
+);
 
 const configArgs = hasWebpackConfig()
 	? []
