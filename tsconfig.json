@@ -1,4 +1,8 @@
 {
-    "references": [],
+    "references": [
+        {
+            "path": "packages/define-envs-webpack-plugin"
+        }
+    ],
     "files": []
 }
