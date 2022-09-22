@@ -19,7 +19,8 @@
         "packages/eslint-plugin",
         "packages/prettier-config",
         "packages/scripts",
-        "packages/ts-config"
+        "packages/ts-config",
+        "packages/webpack-env-provider-plugin"
     ],
     "scripts": {
         "test": "scripts test",
