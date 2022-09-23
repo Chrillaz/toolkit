@@ -7,24 +7,24 @@ const {
 	getPackageConfiguration,
 } = require('../utilities');
 
-process.env.NODE_ENV = 'development';
-process.env.BABEL_ENV = 'development';
+process.env.NODE_ENV = 'production';
+process.env.BABEL_ENV = 'production';
 
 const { scriptArgs } = getArgs();
 
-const hasViteConfig = () => (
-	hasArg('config') || hasArg('c') || hasConsumerConfiguration('vite')
+const hasWebpackConfig = () => (
+	hasArg('config') || hasArg('c') || hasConsumerConfiguration('webpack')
 );
 
-const configArgs = hasViteConfig()
+const configArgs = hasWebpackConfig()
 	? []
 	: [
 			'--config',
-			getPackageConfiguration('vite'),
+			getPackageConfiguration('webpack'),
 	  ];
 
 const { status } = spawn(
-	resolveBin('vite'),
+	resolveBin('webpack'),
 	[
 		...configArgs,
 		...scriptArgs,
