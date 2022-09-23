@@ -10,10 +10,6 @@ const {
     getPackagePath,
 } = require('../utilities');
 
-const isDevelopment = process.env.NODE_ENV !== 'production';
-
-const mode = isDevelopment ? 'development' : 'production';
-
 const context = getConsumerPath('.');
 
 const isTypescriptProject = hasConsumerConfiguration('tsconfig');
@@ -36,16 +32,8 @@ if (hasReact) {
 	}
 }
 
-const devServer = {
-	static: getConsumerPath('public'),
-	compress: true,
-	hot: true,
-	port: 3000,
-	historyApiFallback: hasPackage('react'),
-};
-
 const optimization = {
-	minimize: !isDevelopment,
+	minimize: true,
 	minimizer: [
 		new TerserPlugin({
 			terserOptions: {
@@ -55,8 +43,8 @@ const optimization = {
 					comparisons: false,
 					inline: 2,
 				},
-				keep_classnames: isDevelopment,
-				keep_fnames: isDevelopment,
+				keep_classnames: false,
+				keep_fnames: false,
 				mangle: {
 					safari10: true,
 				},
@@ -73,7 +61,9 @@ const optimization = {
 const plugins = [
 	new HTMLWebpackPlugin({
 		inject: 'body',
-		template: getConsumerPath('public/index.html'),
+		template: getConsumerPath('index.html'),
+        output: getConsumerPath('dist'),
+        publicPath: '/'
 	}),
 ];
 
@@ -83,11 +73,10 @@ if (!browserslist.findConfig('.')) {
 }
 
 const config = {
-    mode,
+    mode: process.env.NODE_ENV,
 	context,
-	target,
-	devServer,
-	devtool: isDevelopment ? 'inline-source-map' : 'source-map',
+	// target,
+	devtool: 'source-map',
 	entry: getConsumerPath('src'),
 	output: {
 		filename: '[name].js',
@@ -106,7 +95,7 @@ const config = {
 				use: {
 					loader: require.resolve('babel-loader'),
 					options: {
-						compact: !isDevelopment,
+						compact: true,
 						...babelOptions,
 					},
 				},
