@@ -75,7 +75,7 @@ if (!browserslist.findConfig('.')) {
 const config = {
     mode: process.env.NODE_ENV,
 	context,
-	// target,
+	target,
 	devtool: 'source-map',
 	entry: getConsumerPath('src'),
 	output: {

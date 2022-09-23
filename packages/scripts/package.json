@@ -23,7 +23,6 @@
         "@babel/preset-env": "^7.19.1",
         "@babel/preset-react": "^7.18.6",
         "@babel/preset-typescript": "^7.18.6",
-        "@chrillaz/browserslist-config": "file:../browserslist-config",
         "@chrillaz/eslint-plugin": "file:../eslint-plugin",
         "@chrillaz/prettier-config": "file:../prettier-config",
         "@chrillaz/ts-config": "file:../ts-config",
