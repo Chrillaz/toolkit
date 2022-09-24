@@ -12,9 +12,7 @@ process.env.BABEL_ENV = 'development';
 
 const { scriptArgs } = getArgs();
 
-const hasViteConfig = () => (
-	hasArg('config') || hasArg('c') || hasConsumerConfiguration('vite')
-);
+const hasViteConfig = () => hasArg('config') || hasArg('c') || hasConsumerConfiguration('vite');
 
 const configArgs = hasViteConfig()
 	? []
