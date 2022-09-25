@@ -94,10 +94,7 @@ const config = {
 				exclude: /node_modules/,
 				use: {
 					loader: require.resolve('babel-loader'),
-					options: {
-						compact: true,
-						...babelOptions,
-					},
+					options: babelOptions,
 				},
 			},
 		],
