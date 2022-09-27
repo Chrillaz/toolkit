@@ -1,20 +1,21 @@
-const config = {
-    settings: {
-        react: {
-        version: "detect",
-        },
-    },
-    parserOptions: {
-        ecmaFeatures: {
-        jsx: true,
-        },
-    },
-    extends: ["plugin:react/recommended", "plugin:react-hooks/recommended"],
-    plugins: ["react", "react-hooks"],
-    rules: {
-        "react/prop-types": "off",
-        "react-hooks/rules-of-hook": "error"
-    }
+module.exports = {
+	extends: ['plugin:react/recommended'],
+	parserOptions: {
+		ecmaFeatures: {
+			jsx: true,
+		},
+	},
+	plugins: [
+		'react',
+		'react-hooks',
+	],
+	rules: {
+		'react/prop-types': 'off',
+		'react-hooks/rules-of-hook': 'error',
+	},
+	settings: {
+		react: {
+			version: 'detect',
+		},
+	},
 };
-
-module.exports = config;

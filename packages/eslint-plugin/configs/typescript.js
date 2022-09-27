@@ -1,4 +1,4 @@
-const config = {
+module.exports = {
 	extends: [
 		'plugin:@chrillaz/eslint-plugin/recommended',
 		'plugin:@typescript-eslint/recommended',
@@ -14,5 +14,3 @@ const config = {
 		'@typescript-eslint',
 	],
 };
-
-module.exports = config;

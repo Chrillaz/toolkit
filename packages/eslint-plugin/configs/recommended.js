@@ -1,33 +1,21 @@
 const config = {
-	root: true,
 	env: {
-		es6: true,
 		node: true,
 	},
 	extends: [
 		'eslint:recommended',
-		'prettier',
-	],
-	plugins: [
-		'@chrillaz',
-		'prettier',
 	],
 	parserOptions: {
 		sourceType: 'module',
-        ecmaVersion: 'latest'
+		ecmaVersion: 'latest',
 	},
 	rules: {
 		'block-spacing': 'error',
-		'keyword-spacing': [
-			'error',
-			{
-				before: true,
-			},
-		],
 		'function-paren-newline': [
 			'error',
 			'multiline-arguments',
 		],
+		'keyword-spacing': 'error',
 		'no-prototype-builtins': 'error',
 		'padding-line-between-statements': [
 			'error',
@@ -41,5 +29,34 @@ const config = {
 		'sort-keys': 'error',
 	},
 };
+
+if (require.resolve('prettier')) {
+	config.extends.push('plugin:prettier/recommended');
+
+	config.rules = {
+		...config.rules,
+		'prettier/prettier': [
+			'error',
+			require.resolve('@chrillaz/prettier-config'),
+		],
+	};
+}
+
+if (require.resolve('typescript')) {
+	config.overrides = [
+		{
+			extends: [
+				require.resolve('./typescript'),
+			],
+		},
+	];
+}
+
+if (require.resolve('react')) {
+	config.extends.push('plugin:@chrillaz/eslint-plugin/react');
+	if (hasTypescript) {
+		config.overrides[0].extends.push(require.resolve('./react'));
+	}
+}
 
 module.exports = config;

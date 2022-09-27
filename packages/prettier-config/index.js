@@ -1,4 +1,4 @@
-const base = {
+let config = {
 	plugins: [require.resolve('prettier-plugin-multiline-arrays')],
 	singleQuote: true,
 	useTabs: true,
@@ -9,11 +9,11 @@ const base = {
 	endOfLine: 'lf',
 };
 
-const react = {
-	jsxSingleQuote: false,
-};
+if (require.resolve('react')) {
+	config = {
+		...config,
+		jsxSingleQuote: false,
+	};
+}
 
-module.exports = {
-	base,
-	react,
-};
+module.exports = config;
