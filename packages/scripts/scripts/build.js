@@ -1,21 +1,13 @@
 const { sync: spawn } = require('cross-spawn');
 const { sync: resolveBin } = require('resolve-bin');
-const {
-	getArgs,
-	hasArg,
-	hasConsumerConfiguration,
-	getPackageConfiguration,
-} = require('../utilities');
+const { getArgs, hasConfig, getPackageConfiguration } = require('../utilities');
 
 process.env.NODE_ENV = 'production';
 process.env.BABEL_ENV = 'production';
 
 const { scriptArgs } = getArgs();
 
-const hasWebpackConfig = () =>
-	hasArg('config') || hasArg('c') || hasConsumerConfiguration('webpack');
-
-const configArgs = hasWebpackConfig()
+const configArgs = hasConfig('webpack')
 	? []
 	: [
 			'--config',

@@ -4,38 +4,36 @@ const {
 	hasArg,
 	getArgs,
 	getFileArg,
+    hasConfig,
 	hasConsumerConfiguration,
 	getPackageConfiguration,
 } = require('../utilities');
 
 const { scriptArgs } = getArgs();
 
-const hasEslintConfig = () =>
-	hasArg('config') || hasArg('c') || hasConsumerConfiguration('.eslint');
-
-const configArgs = hasEslintConfig()
+const configArgs = hasConfig('.eslint')
 	? []
 	: [
-		'--config',
-		getPackageConfiguration('.eslint'),
-		'--no-eslintrc',
-	];
+			'--config',
+			getPackageConfiguration('.eslint'),
+			'--no-eslintrc',
+	  ];
 
 const hasEslintIgnore = () => hasArg('--ignore-path') || hasConsumerConfiguration('.eslintignore');
 
 const ignoreArgs = hasEslintIgnore()
 	? []
 	: [
-		'--ignore-path',
-		getPackageConfiguration('.eslintignore'),
-	];
+			'--ignore-path',
+			getPackageConfiguration('.eslintignore'),
+	  ];
 
 const extArgs = hasArg('ext')
 	? []
 	: [
-		'--ext',
-		'js,jsx,ts,tsx',
-	];
+			'--ext',
+			'js,jsx,ts,tsx',
+	  ];
 
 const fileArgs = getFileArg().length > 0 ? [] : ['.'];
 
