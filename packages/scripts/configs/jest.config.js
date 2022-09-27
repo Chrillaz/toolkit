@@ -1,5 +1,5 @@
 const {
-  consumerRoot,
+	consumerRoot,
 	hasConsumerConfiguration,
 	getKeyFromPackage,
 	getPackageConfiguration,
@@ -14,12 +14,15 @@ const config = {
 		'jsx',
 	],
 	setupFilesAfterEnv: [getPackageConfiguration('jest.setup')],
-	testEnvironment: 'jsdom',
+	testEnvironment: require.resolve('jest-environment-jsdom'),
 	testEnvironmentOptions: {
 		url: 'http://localhost:3000',
 	},
 	testPathIgnorePatterns: ['/node_modules/'],
-	testMatch: ['<rootDir>/src/**/*.(test|spec).[jt]s?(x)'],
+	testMatch: [
+		'<rootDir>/__test__/**/*.(test|spec).[jt]s?(x)',
+		'<rootDir>/src/**/*.(test|spec).[jt]s?(x)',
+	],
 	transform: {
 		'^.+\\.(js|jsx)?$': require.resolve('babel-jest'),
 	},
@@ -31,19 +34,16 @@ if (hasConsumerConfiguration('jest.setup')) {
 }
 
 if (hasConsumerConfiguration('tsconfig')) {
-	config.globals = {
-		'ts-jest': {
-			tsconfig: getConsumerConfiguration('tsconfig'),
-		},
-	};
-
 	config.moduleFileExtensions = [
 		...config.moduleFileExtensions,
 		'ts',
 		'tsx',
 	];
 
-	config.transform['^.+.(ts|tsx)?$'] = require.resolve('ts-jest');
+	config.transform['^.+.(ts|tsx)?$'] = [
+		require.resolve('ts-jest'),
+		{ tsconfig: getConsumerConfiguration('tsconfig') },
+	];
 }
 
 module.exports = config;
