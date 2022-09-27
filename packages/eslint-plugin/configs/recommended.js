@@ -1,3 +1,17 @@
+/**
+ * Checks if package exists
+ * 
+ * @param { string } packageName 
+ * @returns boolean
+ */
+function hasPackage(packageName) {
+    try {
+        return Boolean(require.resolve(packageName));
+    } catch ( error ) {
+        return false;
+    }
+}
+
 const config = {
 	env: {
 		node: true,
@@ -30,7 +44,7 @@ const config = {
 	},
 };
 
-if (require.resolve('prettier')) {
+if (hasPackage('prettier')) {
 	config.extends.push('plugin:prettier/recommended');
 
 	config.rules = {
@@ -42,7 +56,7 @@ if (require.resolve('prettier')) {
 	};
 }
 
-if (require.resolve('typescript')) {
+if (hasPackage('typescript')) {
 	config.overrides = [
 		{
 			extends: [
@@ -52,7 +66,7 @@ if (require.resolve('typescript')) {
 	];
 }
 
-if (require.resolve('react')) {
+if (hasPackage('react')) {
 	config.extends.push('plugin:@chrillaz/eslint-plugin/react');
 	if (hasTypescript) {
 		config.overrides[0].extends.push(require.resolve('./react'));

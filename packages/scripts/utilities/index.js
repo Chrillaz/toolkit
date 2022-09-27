@@ -85,15 +85,17 @@ function resolveConfiguration(fileName, resolver) {
 }
 
 /**
- *
- * @param packageName string
+ * Checks if package is in node_modules
+ * 
+ * @param { string } packageName
  * @returns boolean
  */
 function hasPackage(packageName) {
-	return (
-		packageName in (packageJson.dependencies || {}) ||
-		packageName in (packageJson.devDependencies || {})
-	);
+    try {
+        return Boolean(require.resolve(packageName));
+    } catch( error ) {
+        return false;
+    }
 }
 
 /**
@@ -230,6 +232,16 @@ function getArgs() {
 	};
 }
 
+/**
+ * Checks if coonsumer has or provides config
+ * 
+ * @param { string } configName 
+ * @returns boolean
+ */
+function hasConfig(configName) {
+    return hasArg('config') || hasArg('c') || hasConsumerConfiguration(configName);
+}
+
 module.exports = {
 	getScripts,
 	hasScript,
@@ -250,4 +262,5 @@ module.exports = {
 	hasArg,
 	getFileArg,
 	getArgs,
+    hasConfig
 };

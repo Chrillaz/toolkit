@@ -1,3 +1,17 @@
+/**
+ * Checkis if package exists
+ * 
+ * @param { string } packageName 
+ * @returns 
+ */
+function hasPackage(packageName) {
+    try {
+        return Boolean(require.resolve(packageName));
+    } catch ( error ) {
+        return false;
+    }
+}
+
 let config = {
 	plugins: [require.resolve('prettier-plugin-multiline-arrays')],
 	singleQuote: true,
@@ -9,7 +23,7 @@ let config = {
 	endOfLine: 'lf',
 };
 
-if (require.resolve('react')) {
+if (hasPackage('react')) {
 	config = {
 		...config,
 		jsxSingleQuote: false,
